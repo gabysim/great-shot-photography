@@ -3,15 +3,17 @@ const CATEGORIES = [
     id: 'immobilier',
     label: 'Immobilier',
     shots: [
-      { slot: 'salon — grand-angle', caption: 'Appartement T3, Saint-Cyprien' },
-      { slot: 'cuisine ouverte', caption: 'Appartement T3, Saint-Cyprien' },
-      { slot: 'façade — extérieur', caption: 'Maison de ville, Balma' },
-      { slot: 'chambre — lumière naturelle', caption: 'Maison de ville, Balma' },
-      { slot: 'vue drone', caption: 'Villa avec jardin, Tournefeuille' },
-      { slot: 'séjour double exposition', caption: 'Villa avec jardin, Tournefeuille' },
-      { slot: 'salle de bain', caption: 'Studio meublé, Capitole' },
-      { slot: 'local commercial', caption: 'Local 90 m², Compans' },
-      { slot: 'terrasse au coucher du soleil', caption: 'Duplex, Carmes' }
+      { src: 'assets/portfolio/immobilier-01.jpg', caption: 'Terrasse rooftop, Toulouse' },
+      { src: 'assets/portfolio/immobilier-02.jpg', caption: 'Façade et quartier, Toulouse' },
+      { src: 'assets/portfolio/immobilier-03.jpg', caption: "Espace d'accueil, hall d'hôtel" },
+      { src: 'assets/portfolio/immobilier-04.jpg', caption: 'Chambre double, hôtel' },
+      { src: 'assets/portfolio/immobilier-05.jpg', caption: 'Cuisine ouverte, maison de campagne' },
+      { src: 'assets/portfolio/immobilier-06.jpg', caption: 'Cuisine rénovée, style vintage' },
+      { src: 'assets/portfolio/immobilier-07.jpg', caption: 'Corps de ferme, allée extérieure' },
+      { src: 'assets/portfolio/immobilier-08.jpg', caption: 'Terrasse piscine, architecture contemporaine' },
+      { src: 'assets/portfolio/immobilier-09.jpg', caption: 'Salle à manger, poutres apparentes' },
+      { src: 'assets/portfolio/immobilier-10.jpg', caption: 'Vue aérienne, propriété avec piscine' },
+      { src: 'assets/portfolio/immobilier-11.jpg', caption: 'Piscine et jardin, ambiance végétale' }
     ]
   },
   {
@@ -61,13 +63,20 @@ function renderTabs() {
 
 function renderShots() {
   const shotsEl = document.getElementById('shots');
+  const noteEl = document.querySelector('.portfolio-note');
   const cat = CATEGORIES.find((c) => c.id === activeCategory) || CATEGORIES[0];
   shotsEl.innerHTML = '';
+  if (noteEl) {
+    noteEl.style.display = cat.shots.some((s) => !s.src) ? 'block' : 'none';
+  }
   cat.shots.forEach((shot) => {
     const figure = document.createElement('figure');
     figure.className = 'shot';
+    const media = shot.src
+      ? `<div class="shot-photo"><img src="${shot.src}" alt="${shot.caption}" loading="lazy"></div>`
+      : `<div class="shot-slot"><span class="mono">${shot.slot}</span></div>`;
     figure.innerHTML = `
-      <div class="shot-slot"><span class="mono">${shot.slot}</span></div>
+      ${media}
       <figcaption>${shot.caption}</figcaption>
     `;
     shotsEl.appendChild(figure);
