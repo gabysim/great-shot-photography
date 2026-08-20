@@ -3,17 +3,17 @@ const CATEGORIES = [
     id: 'immobilier',
     label: 'Immobilier',
     shots: [
-      { src: 'assets/portfolio/immobilier-01.jpg', caption: 'Terrasse rooftop, Toulouse' },
-      { src: 'assets/portfolio/immobilier-02.jpg', caption: 'Façade et quartier, Toulouse' },
-      { src: 'assets/portfolio/immobilier-03.jpg', caption: "Espace d'accueil, hall d'hôtel" },
-      { src: 'assets/portfolio/immobilier-04.jpg', caption: 'Chambre double, hôtel' },
-      { src: 'assets/portfolio/immobilier-05.jpg', caption: 'Cuisine ouverte, maison de campagne' },
-      { src: 'assets/portfolio/immobilier-06.jpg', caption: 'Cuisine rénovée, style vintage' },
-      { src: 'assets/portfolio/immobilier-07.jpg', caption: 'Corps de ferme, allée extérieure' },
-      { src: 'assets/portfolio/immobilier-08.jpg', caption: 'Terrasse piscine, architecture contemporaine' },
-      { src: 'assets/portfolio/immobilier-09.jpg', caption: 'Salle à manger, poutres apparentes' },
-      { src: 'assets/portfolio/immobilier-10.jpg', caption: 'Vue aérienne, propriété avec piscine' },
-      { src: 'assets/portfolio/immobilier-11.jpg', caption: 'Piscine et jardin, ambiance végétale' }
+      { src: 'assets/portfolio/immobilier-01.jpg', caption: 'Photo extérieure. Terrasse rooftop — Toulouse' },
+      { src: 'assets/portfolio/immobilier-02.jpg', caption: 'Photo extérieure. Façade et rue commerçante — Toulouse' },
+      { src: 'assets/portfolio/immobilier-03.jpg', caption: "Photo intérieure. Espace d'accueil — Toulouse" },
+      { src: 'assets/portfolio/immobilier-04.jpg', caption: 'Photo intérieure. Chambre double — Toulouse' },
+      { src: 'assets/portfolio/immobilier-05.jpg', caption: 'Photo intérieure. Cuisine ouverte, maison de campagne — Pibrac' },
+      { src: 'assets/portfolio/immobilier-06.jpg', caption: 'Photo intérieure. Cuisine rénovée, style vintage — Toulouse' },
+      { src: 'assets/portfolio/immobilier-07.jpg', caption: 'Photo extérieure. Corps de ferme et allée — Tournefeuille' },
+      { src: 'assets/portfolio/immobilier-08.jpg', caption: 'Photo extérieure. Villa avec piscine, architecture contemporaine — Colomiers' },
+      { src: 'assets/portfolio/immobilier-09.jpg', caption: 'Photo intérieure. Salle à manger, poutres apparentes — Castanet-Tolosan' },
+      { src: 'assets/portfolio/immobilier-10.jpg', caption: 'Photo aérienne. Propriété avec piscine — Saint-Orens-de-Gameville' },
+      { src: 'assets/portfolio/immobilier-11.jpg', caption: 'Photo extérieure. Villa avec piscine et jardin — Plaisance-du-Touch' }
     ]
   },
   {
