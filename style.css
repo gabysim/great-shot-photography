@@ -67,7 +67,6 @@ nav { display: flex; align-items: center; gap: 32px; font-size: 14px; letter-spa
   height: 88vh;
   min-height: 620px;
   display: flex;
-  align-items: flex-end;
   overflow: hidden;
   background: #1d1c17;
 }
@@ -97,8 +96,17 @@ nav { display: flex; align-items: center; gap: 32px; font-size: 14px; letter-spa
 
 .hero-content {
   position: relative;
-  padding: 0 40px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  padding: 110px 40px 56px;
   color: var(--bg);
+}
+
+.hero-top,
+.hero-bottom {
   max-width: 900px;
 }
 
@@ -108,7 +116,7 @@ nav { display: flex; align-items: center; gap: 32px; font-size: 14px; letter-spa
   margin-bottom: 22px;
 }
 
-.hero-content h1 { margin: 0 0 24px; }
+.hero-content h1 { margin: 0; }
 .hero-content h1 img { width: 100%; max-width: 560px; height: auto; display: block; }
 
 .hero-content p {
@@ -361,7 +369,7 @@ footer img { height: 20px; width: auto; opacity: 0.75; }
   nav { gap: 16px; font-size: 13px; }
   section { padding: 70px 20px; }
   #top { padding: 0; }
-  .hero-content { padding: 0 20px 40px; }
+  .hero-content { padding: 80px 20px 40px; }
   h2 { font-size: 30px; }
   .grid-shots { grid-template-columns: repeat(2, 1fr); }
   .tarifs-grid, .apropos-grid, .reservation-grid, .contact-grid { grid-template-columns: 1fr; }
