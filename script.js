@@ -1,110 +1,194 @@
-const CATEGORIES = [
-  {
-    id: 'immobilier',
-    label: 'Immobilier',
-    shots: [
-      { src: 'assets/portfolio/immobilier-01.jpg', caption: 'Photo extérieure. Terrasse rooftop — Toulouse' },
-      { src: 'assets/portfolio/immobilier-02.jpg', caption: 'Photo extérieure. Façade et rue commerçante — Toulouse' },
-      { src: 'assets/portfolio/immobilier-03.jpg', caption: "Photo intérieure. Espace d'accueil — Toulouse" },
-      { src: 'assets/portfolio/immobilier-04.jpg', caption: 'Photo intérieure. Chambre double — Toulouse' },
-      { src: 'assets/portfolio/immobilier-05.jpg', caption: 'Photo intérieure. Cuisine ouverte, maison de campagne — Pibrac' },
-      { src: 'assets/portfolio/immobilier-06.jpg', caption: 'Photo intérieure. Cuisine rénovée, style vintage — Toulouse' },
-      { src: 'assets/portfolio/immobilier-07.jpg', caption: 'Photo extérieure. Corps de ferme et allée — Tournefeuille' },
-      { src: 'assets/portfolio/immobilier-08.jpg', caption: 'Photo extérieure. Villa avec piscine, architecture contemporaine — Colomiers' },
-      { src: 'assets/portfolio/immobilier-09.jpg', caption: 'Photo intérieure. Salle à manger, poutres apparentes — Castanet-Tolosan' },
-      { src: 'assets/portfolio/immobilier-10.jpg', caption: 'Photo aérienne. Propriété avec piscine — Saint-Orens-de-Gameville' },
-      { src: 'assets/portfolio/immobilier-11.jpg', caption: 'Photo extérieure. Villa avec piscine et jardin — Plaisance-du-Touch' }
-    ]
-  },
-  {
-    id: 'portrait',
-    label: 'Portrait',
-    shots: [
-      { slot: 'portrait corporate', caption: 'Agence immobilière, Toulouse' },
-      { slot: 'portrait extérieur', caption: 'Mandataire indépendant' },
-      { slot: 'portrait studio fond clair', caption: 'Profil professionnel' },
-      { slot: 'portrait en situation', caption: 'Artisan, atelier' }
-    ]
-  },
-  {
-    id: 'evenementiel',
-    label: 'Événementiel',
-    shots: [
-      { slot: "inauguration — vue d'ensemble", caption: "Ouverture d'agence" },
-      { slot: 'détail — invités', caption: "Ouverture d'agence" },
-      { slot: 'conférence — scène', caption: 'Séminaire, Toulouse' },
-      { slot: 'cocktail — ambiance', caption: 'Soirée partenaires' }
-    ]
+/* ============================================================
+   GREAT SHOT — Interactions photographiques
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+  /* -----------------------------------------------------------
+     1. LOADER DIAPHRAGME (iris)
+     ----------------------------------------------------------- */
+  const iris = $('#iris-loader');
+  if (iris) {
+    setTimeout(() => iris.classList.add('iris-open'), 100);
+    setTimeout(() => {
+      iris.classList.add('iris-hidden');
+      document.body.classList.add('site-ready');
+    }, 1900);
+    setTimeout(() => iris.remove(), 2800);
+  } else {
+    document.body.classList.add('site-ready');
   }
-  // Nouvelle catégorie : ajouter un objet ici (id, label, shots) pour l'ajouter au portfolio.
-];
 
-// Remplacer par le vrai lien Calendly une fois créé.
-const CALENDLY_URL = 'https://calendly.com/votre-lien';
+  /* -----------------------------------------------------------
+     2. VIEWFINDER — Curseur reflex qui suit la souris
+     ----------------------------------------------------------- */
+  const vf = document.createElement('div');
+  vf.className = 'viewfinder';
+  vf.innerHTML = `
+    <span class="bracket tl"></span>
+    <span class="bracket tr"></span>
+    <span class="bracket bl"></span>
+    <span class="bracket br"></span>
+  `;
+  document.body.appendChild(vf);
 
-let activeCategory = CATEGORIES[0].id;
+  let mouseX = 0, mouseY = 0;
+  let vfX = 0, vfY = 0;
+  const lerp = (a, b, t) => a + (b - a) * t;
 
-function renderTabs() {
-  const tabsEl = document.getElementById('tabs');
-  tabsEl.innerHTML = '';
-  CATEGORIES.forEach((cat) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.textContent = cat.label;
-    btn.className = 'tab-btn' + (cat.id === activeCategory ? ' active' : '');
-    btn.addEventListener('click', () => {
-      activeCategory = cat.id;
-      renderTabs();
-      renderShots();
-    });
-    tabsEl.appendChild(btn);
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
-}
 
-function renderShots() {
-  const shotsEl = document.getElementById('shots');
-  const noteEl = document.querySelector('.portfolio-note');
-  const cat = CATEGORIES.find((c) => c.id === activeCategory) || CATEGORIES[0];
-  shotsEl.innerHTML = '';
-  if (noteEl) {
-    noteEl.style.display = cat.shots.some((s) => !s.src) ? 'block' : 'none';
+  function tick() {
+    vfX = lerp(vfX, mouseX, 0.22);
+    vfY = lerp(vfY, mouseY, 0.22);
+    const size = vf.classList.contains('hovering') ? 45 : 30;
+    vf.style.transform = `translate3d(${vfX - size}px, ${vfY - size}px, 0)`;
+    requestAnimationFrame(tick);
   }
-  cat.shots.forEach((shot) => {
-    const figure = document.createElement('figure');
-    figure.className = 'shot';
-    const media = shot.src
-      ? `<div class="shot-photo"><img src="${shot.src}" alt="${shot.caption}" loading="lazy"></div>`
-      : `<div class="shot-slot"><span class="mono">${shot.slot}</span></div>`;
-    figure.innerHTML = `
-      ${media}
-      <figcaption>${shot.caption}</figcaption>
-    `;
-    shotsEl.appendChild(figure);
-  });
-}
+  tick();
 
-function initReservationLinks() {
-  document.querySelectorAll('a[href="#reservation"], #calendly-btn').forEach((el) => {
-    if (el.id === 'calendly-btn') {
-      el.href = CALENDLY_URL;
+  const hoverables = 'a, button, .chapter, .masonry-item, .filmstrip-frame, input, select, textarea';
+  document.body.addEventListener('mouseover', (e) => {
+    if (e.target.closest(hoverables)) vf.classList.add('hovering');
+  });
+  document.body.addEventListener('mouseout', (e) => {
+    if (e.target.closest(hoverables) && !e.relatedTarget?.closest(hoverables)) {
+      vf.classList.remove('hovering');
     }
   });
-}
 
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  const status = document.getElementById('form-status');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Ce formulaire ne fait que confirmer visuellement l'envoi. Pour recevoir
-    // réellement les messages, brancher un service (Formspree, backend, etc.)
-    // via l'attribut action du formulaire ou un fetch() vers votre API.
-    status.textContent = 'Message envoyé. Réponse sous 24 h.';
-    form.reset();
+  const photoHover = '.chapter, .masonry-item, .filmstrip-frame';
+  document.body.addEventListener('mouseover', (e) => {
+    if (e.target.closest(photoHover)) vf.classList.add('focused');
   });
-}
+  document.body.addEventListener('mouseout', (e) => {
+    if (e.target.closest(photoHover) && !e.relatedTarget?.closest(photoHover)) {
+      vf.classList.remove('focused');
+    }
+  });
 
-renderTabs();
-renderShots();
-initReservationLinks();
-initContactForm();
+  /* -----------------------------------------------------------
+     3. FLASH BLANC sur transitions
+     ----------------------------------------------------------- */
+  const flash = document.createElement('div');
+  flash.className = 'flash-plate';
+  document.body.appendChild(flash);
+
+  function fireFlash() {
+    flash.classList.add('fire');
+    setTimeout(() => flash.classList.remove('fire'), 130);
+  }
+
+  $$('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+    if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+    if (a.target === '_blank') return;
+    a.addEventListener('click', () => fireFlash());
+  });
+
+  /* -----------------------------------------------------------
+     4. NAV — état "scrolled"
+     ----------------------------------------------------------- */
+  const nav = $('.nav');
+  if (nav) {
+    const onScroll = () => {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  const toggle = $('.nav-toggle');
+  const mmenu  = $('.mobile-menu');
+  if (toggle && mmenu) {
+    toggle.addEventListener('click', () => {
+      const willOpen = !mmenu.classList.contains('open');
+      mmenu.classList.toggle('open');
+      toggle.classList.toggle('open', willOpen);
+      document.body.style.overflow = willOpen ? 'hidden' : '';
+    });
+    $$('.mobile-menu a').forEach(a => a.addEventListener('click', () => {
+      mmenu.classList.remove('open');
+      toggle.classList.remove('open');
+      document.body.style.overflow = '';
+    }));
+  }
+
+  /* -----------------------------------------------------------
+     5. REVEAL au scroll
+     ----------------------------------------------------------- */
+  const reveals = $$('.reveal');
+  if (reveals.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+    reveals.forEach(r => io.observe(r));
+  } else {
+    reveals.forEach(r => r.classList.add('in'));
+  }
+
+  /* -----------------------------------------------------------
+     6. Formulaire de contact
+     ----------------------------------------------------------- */
+  const form = $('#contact-form');
+  if (form) {
+    const status = $('#form-status');
+
+    const params = new URLSearchParams(location.search);
+    const preselect = params.get('prestation');
+    if (preselect) {
+      const sel = form.querySelector('[name="prestation"]');
+      if (sel) {
+        const opt = Array.from(sel.options).find(o => o.value.toLowerCase() === preselect.toLowerCase());
+        if (opt) sel.value = opt.value;
+      }
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const nom = (data.get('nom') || '').toString().trim();
+      const email = (data.get('email') || '').toString().trim();
+      const tel = (data.get('tel') || '').toString().trim();
+      const prestation = (data.get('prestation') || '').toString();
+      const message = (data.get('message') || '').toString().trim();
+
+      if (!nom || !email || !message) {
+        status.textContent = 'Merci de remplir nom, email et message.';
+        status.style.color = '#c96a3f';
+        return;
+      }
+
+      const subject = `[Great Shot] ${prestation} — ${nom}`;
+      const body =
+`Nom : ${nom}
+Email : ${email}
+Téléphone : ${tel || '—'}
+Prestation : ${prestation}
+
+${message}
+`;
+      const mailto = `mailto:greatshot.photo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      status.textContent = 'Ouverture de votre messagerie...';
+      status.style.color = '';
+      fireFlash();
+      setTimeout(() => { window.location.href = mailto; }, 200);
+    });
+  }
+
+})();

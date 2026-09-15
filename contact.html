@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Great Shot Photography · Toulouse</title>
+<meta name="description" content="Contact Great Shot Photography. Toulouse. Email, téléphone, formulaire.">
+<meta name="theme-color" content="#0b0c0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="iris-loader" class="iris-loader">
+  <div class="iris-blade top"></div>
+  <div class="iris-blade bottom"></div>
+  <div class="iris-logo">
+    <img src="assets/logo/logo-sauge.png" alt="Great Shot">
+    <span class="tick">CONTACT</span>
+  </div>
+</div>
+
+<header class="nav">
+  <a href="index.html" class="nav-logo" aria-label="Great Shot Photography — Accueil">
+    <img src="assets/logo/logo-sauge.png" alt="Great Shot Photography">
+  </a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="immobilier.html">Immobilier</a></li>
+      <li><a href="portrait.html">Portrait</a></li>
+      <li><a href="voyage.html">Voyage</a></li>
+      <li><a href="sport.html">Sport</a></li>
+    </ul>
+  </nav>
+  <a href="mailto:greatshot.photo@gmail.com" class="nav-cta">Email direct</a>
+  <button class="nav-toggle" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<div class="mobile-menu">
+  <a href="immobilier.html">Immobilier</a>
+  <a href="portrait.html">Portrait</a>
+  <a href="voyage.html">Voyage</a>
+  <a href="sport.html">Sport</a>
+  <a href="contact.html"><em>Contact</em></a>
+</div>
+
+<main class="contact-page">
+  <div class="contact-intro reveal">
+    <div class="page-header-num" style="margin-bottom: 24px;">Écrivons-le ensemble</div>
+    <h1>Un mot, <em>une image commence.</em></h1>
+    <p>Racontez-moi le projet : un bien à shooter cette semaine, un portrait attendu depuis longtemps, un événement à couvrir. Je réponds le jour même en semaine.</p>
+
+    <div class="contact-details">
+      <div class="contact-detail">
+        <span class="contact-detail-label">Email</span>
+        <span class="contact-detail-value"><a href="mailto:greatshot.photo@gmail.com">greatshot.photo@gmail.com</a></span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Téléphone</span>
+        <span class="contact-detail-value"><a href="tel:+33612649622">06 12 64 96 22</a></span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Studio</span>
+        <span class="contact-detail-value">Toulouse — Haute-Garonne</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Réponse</span>
+        <span class="contact-detail-value">Le jour même, en semaine</span>
+      </div>
+    </div>
+  </div>
+
+  <form class="contact-form reveal" id="contact-form" novalidate>
+    <h3>Nouveau message</h3>
+
+    <div class="field">
+      <label for="nom">Votre nom</label>
+      <input type="text" id="nom" name="nom" required autocomplete="name">
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required autocomplete="email">
+    </div>
+    <div class="field">
+      <label for="tel">Téléphone (optionnel)</label>
+      <input type="tel" id="tel" name="tel" autocomplete="tel">
+    </div>
+    <div class="field">
+      <label for="prestation">Type de prestation</label>
+      <select id="prestation" name="prestation">
+        <option>Immobilier</option>
+        <option>Immobilier sur devis</option>
+        <option>Portrait</option>
+        <option>Voyage</option>
+        <option>Sport</option>
+        <option>Événementiel / Corporate</option>
+        <option>Autre projet</option>
+      </select>
+    </div>
+    <div class="field full">
+      <label for="message">Votre projet en quelques lignes</label>
+      <textarea id="message" name="message" rows="6" required placeholder="Type de bien, date pressentie, ville, contraintes particulières..."></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-shutter"><span class="dot"></span><span>Envoyer</span></button>
+      <span class="form-status" id="form-status"></span>
+    </div>
+  </form>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="assets/logo/logo-sauge.png" alt="Great Shot">
+      <p>Photographe indépendant basé à Toulouse. Immobilier, portrait, voyage, sport.</p>
+    </div>
+    <div>
+      <h4>Le book</h4>
+      <ul>
+        <li><a href="immobilier.html">Immobilier</a></li>
+        <li><a href="portrait.html">Portrait</a></li>
+        <li><a href="voyage.html">Voyage</a></li>
+        <li><a href="sport.html">Sport</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="mailto:greatshot.photo@gmail.com">greatshot.photo@gmail.com</a></li>
+        <li><a href="tel:+33612649622">06 12 64 96 22</a></li>
+        <li>Toulouse — France</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Réseaux</h4>
+      <ul>
+        <li><a href="https://instagram.com/greatshot.photography" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="contact.html">Formulaire</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Great Shot Photography</span>
+    <span>Made with light &amp; time</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
