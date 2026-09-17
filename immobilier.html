@@ -31,6 +31,7 @@
       <li><a href="portrait.html">Portrait</a></li>
       <li><a href="voyage.html">Voyage</a></li>
       <li><a href="sport.html">Sport</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
     </ul>
   </nav>
   <a href="contact.html?prestation=Immobilier" class="nav-cta">Réserver</a>
@@ -42,6 +43,7 @@
   <a href="portrait.html">Portrait</a>
   <a href="voyage.html">Voyage</a>
   <a href="sport.html">Sport</a>
+  <a href="tarifs.html">Tarifs</a>
   <a href="contact.html">Contact</a>
 </div>
 
@@ -114,21 +116,20 @@
   </div>
 </div>
 
-<!-- TARIFS -->
+<!-- TARIF SIMPLE + LIEN VERS PAGE TARIFS -->
 <section class="pricing">
   <div class="pricing-header reveal">
-    <span class="section-label" style="justify-content: center;"><span class="num">05</span> Grille tarifaire</span>
-    <h2>Simple, <em>transparent.</em></h2>
-    <p>Un tarif unique quel que soit le bien, une option drone quand ça vaut la peine. Pas de suppléments cachés, pas de complications.</p>
+    <span class="section-label" style="justify-content: center;"><span class="num">05</span> Le tarif</span>
+    <h2>Un forfait. <em>Point.</em></h2>
+    <p>Le même prix pour un studio, une maison ou un local commercial. Option drone quand ça vaut la peine. Pour les cas particuliers, un devis clair sous 24 h.</p>
   </div>
 
-  <div class="pricing-grid reveal">
+  <div class="pricing-grid reveal" style="grid-template-columns: 1fr; max-width: 720px; margin: 0 auto;">
     <div class="price-card featured">
       <div>
-        <div class="price-label">Prestation standard</div>
+        <div class="price-label">Prestation standard · Toulouse + 40 km</div>
         <div class="price-name">Reportage <em>immobilier</em></div>
-        <p class="price-desc">Studio, appartement, maison, local commercial. Reportage complet, retouches incluses, livraison sous 48 h. Zone : Toulouse et 40 km alentours.</p>
-        <div class="price-amount">
+        <div class="price-amount" style="margin-top: 20px;">
           <span class="num">100</span>
           <span class="unit">€ / bien</span>
         </div>
@@ -136,23 +137,14 @@
           <span class="price-option-label">Option drone — vues aériennes</span>
           <span class="price-option-value">+ 20 €</span>
         </div>
-      </div>
-      <a href="contact.html?prestation=Immobilier" class="btn-shutter price-cta"><span class="dot"></span><span>Réserver un shooting</span></a>
-    </div>
-
-    <div class="price-card">
-      <div>
-        <div class="price-label">Devis personnalisé</div>
-        <div class="price-name">Cas <em>particuliers</em></div>
-        <p class="price-desc">Certains projets sortent du cadre du forfait. Je rédige un devis clair, sous 24 h.</p>
         <div class="price-notes">
-          <strong>+</strong> Grands domaines, châteaux, biens de prestige<br>
-          <strong>+</strong> Architectures atypiques, biens à mise en scène<br>
-          <strong>+</strong> Biens hors zone Toulouse (+40 km)<br>
-          <strong>+</strong> Reportages vidéo, réels sociaux, drone vidéo
+          <strong>Sur devis</strong> pour les grands domaines, projets atypiques et biens hors zone (au-delà de 40 km).
         </div>
       </div>
-      <a href="contact.html?prestation=Immobilier%20sur%20devis" class="btn-ghost price-cta"><span>Demander un devis</span></a>
+      <div style="display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap;">
+        <a href="contact.html?prestation=Immobilier" class="btn-shutter"><span class="dot"></span><span>Réserver un shooting</span></a>
+        <a href="tarifs.html" class="btn-ghost"><span>Voir tous les tarifs</span></a>
+      </div>
     </div>
   </div>
 </section>
